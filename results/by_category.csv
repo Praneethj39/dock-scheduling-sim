@@ -1,0 +1,13 @@
+policy,category,trucks,avg_yard_wait_min,pct_wait_over_45min
+fcfs,bulky,392,52.3,46.2
+fcfs,dry,1044,53.8,47.4
+fcfs,perishable,626,52.5,49.0
+priority,bulky,392,62.8,52.0
+priority,dry,1044,63.2,51.9
+priority,perishable,626,12.1,0.3
+slots,bulky,392,18.4,10.2
+slots,dry,1044,18.9,11.8
+slots,perishable,626,9.8,0.2
+spt,bulky,392,89.3,40.3
+spt,dry,1044,31.6,17.3
+spt,perishable,626,14.3,4.6
