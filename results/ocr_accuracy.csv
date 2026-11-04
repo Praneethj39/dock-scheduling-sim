@@ -1,0 +1,7 @@
+difficulty,mode,passes,truck_id,vendor_id,arrival_time,pallets,field_avg,all_4_correct,fields_not_found
+clean,preprocessed,150,100.0,96.7,100.0,100.0,99.2,96.7,2
+clean,raw,150,92.7,100.0,100.0,84.0,94.2,77.3,20
+hard,preprocessed,50,74.0,72.0,78.0,74.0,74.5,64.0,43
+hard,raw,50,44.0,40.0,42.0,48.0,43.5,34.0,105
+all,preprocessed,200,93.5,90.5,94.5,93.5,93.0,88.5,45
+all,raw,200,80.5,85.0,85.5,75.0,81.5,66.5,125

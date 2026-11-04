@@ -1,0 +1,3 @@
+__pycache__/
+# gate-pass images are recreated by ocr_generate.py (same seed -> same images)
+data/ocr/images/

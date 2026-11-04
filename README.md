@@ -3,7 +3,9 @@
 A simulation of supplier trucks arriving at a retail distribution centre (DC),
 used to compare four ways of deciding which truck gets the next free unloading
 dock. It also produces the kind of messy logs a real yard has, cleans them,
-runs SQL KPIs on them and shows the results on a dashboard.
+runs SQL KPIs on them and shows the results on a dashboard. A gate-pass OCR
+module reads photos of the paper gate pass each truck brings, checks them
+against the supplier booking, and approves the matching ones automatically.
 
 ## The problem in one paragraph
 
@@ -21,9 +23,15 @@ You need Python 3.10 or newer.
 
 ```bash
 pip install -r requirements.txt     # one time
-python run_all.py                   # simulate -> clean -> analyse (~10 seconds)
+python run_all.py                   # simulate -> clean -> analyse -> OCR (~2 minutes)
 streamlit run dashboard.py          # opens the dashboard in your browser
 ```
+
+The OCR step needs the **Tesseract** program as well as the Python packages
+(`pytesseract` only talks to it): `brew install tesseract` on a Mac,
+`sudo apt install tesseract-ocr` on Ubuntu, or the installer from
+[UB-Mannheim](https://github.com/UB-Mannheim/tesseract/wiki) on Windows.
+No Tesseract? Run `python run_all.py --skip-ocr`.
 
 On a Mac, use `pip3` and `python3` if `pip` / `python` don't work.
 You can also run the three steps one at a time (see below), which is the
@@ -37,7 +45,8 @@ better way to learn it.
 | 2 | `clean_and_load.py` | Cleans the 3 logs, joins them into one row per truck, checks the data makes sense, and saves it to a SQLite database `data/yard.db`. |
 | 3 | `kpis.sql` | The SQL queries that calculate the KPIs (average wait, 90th-percentile wait, wait by truck type, dock utilisation, detention cost). |
 | 4 | `analyze.py` | Runs the SQL, saves CSVs and charts into `results/`, reruns the simulation with 20 different random seeds, tries different slot limits, and tests adding a 6th dock. |
-| 5 | `dashboard.py` | Streamlit dashboard: pick a rule and date range, see KPI tiles, wait by hour, trucks in the yard through a day, dock utilisation, trucks past free time. |
+| 5 | `dashboard.py` | Streamlit dashboard. **Yard** tab: pick a rule and date range, see KPI tiles, wait by hour, trucks in the yard through a day, dock utilisation, trucks past free time. **Gate-pass OCR** tab: approved vs pending passes, why they're pending, OCR accuracy, and a viewer for any single pass. |
+| 6 | `ocr_*.py`, `run_ocr.py` | The gate-pass OCR module (see [its own section](#gate-pass-ocr-module) and the step-by-step [OCR_WALKTHROUGH.md](OCR_WALKTHROUGH.md)). |
 
 ### Step 1: the simulation, in plain words
 
@@ -159,6 +168,105 @@ roll out **slots at about 7.5 trucks/hour**, starting with the suppliers who
 arrive in the 9-11 am peak. Only consider a 6th dock if the slot system can't
 shift enough trucks out of the morning.
 
+## Gate-pass OCR module
+
+### The problem
+
+Every truck hands the guard a paper **gate pass / delivery challan** with
+its truck number, supplier, arrival time and pallet count. Typing that in
+by hand is slow (it adds to the gate queue) and causes typos. The idea:
+photograph the pass, let OCR read it, and only send the passes that don't
+match the supplier's booking to a person.
+
+| Step | File | What it does |
+|---|---|---|
+| 1 | `ocr_generate.py` | Draws 200 gate passes with Pillow from the slot-booking run. 25% are made **hard** (2-3 of: tilted 3-10 deg, blurred, faded, grainy). A few have real problems on purpose: wrong pallet count (19), truck that never booked (4); 17 trucks really arrived outside their slot in the simulation. The true printed values go to `data/ocr/ground_truth.csv`. |
+| 2 | `ocr_preprocess.py` | OpenCV cleaning: grayscale -> denoise (only if the image measures as grainy) -> contrast stretch -> Otsu threshold -> deskew (projection-profile). |
+| 3 | `ocr_read.py` | Runs Tesseract on every image twice, **raw** and **preprocessed**, pulls the 4 fields out with regular expressions, saves them to table `ocr_reads`. |
+| 4 | `ocr_validate.py` | Joins the reads to the booking in SQL. All 4 fields match -> **approved**; otherwise **pending verification** with the reason. Saves `gate_pass_checks`. |
+| 5 | `ocr_accuracy.py` | Field-level accuracy, clean vs hard, raw vs preprocessed (`ocr_accuracy`). `--ablation` adds one cleaning step at a time. |
+
+![Before and after preprocessing](results/ocr_before_after.png)
+
+### Results (200 passes, Tesseract 5.3)
+
+**Field-level accuracy** = % of passes where that field is *exactly* right.
+
+| Images | Input | Truck no. | Supplier | Arrival time | Pallets | **Avg field** | All 4 right |
+|---|---|---|---|---|---|---|---|
+| Clean (150) | raw | 92.7 | 100.0 | 100.0 | 84.0 | **94.2** | 77.3 |
+| Clean (150) | preprocessed | 100.0 | 96.7 | 100.0 | 100.0 | **99.2** | 96.7 |
+| Hard (50) | raw | 44.0 | 40.0 | 42.0 | 48.0 | **43.5** | 34.0 |
+| Hard (50) | preprocessed | 74.0 | 72.0 | 78.0 | 74.0 | **74.5** | 64.0 |
+| All (200) | raw | 80.5 | 85.0 | 85.5 | 75.0 | **81.5** | 66.5 |
+| All (200) | preprocessed | 93.5 | 90.5 | 94.5 | 93.5 | **93.0** | 88.5 |
+
+**What each cleaning step adds** (hard images, `python ocr_accuracy.py --ablation`):
+
+| Pipeline | Avg field accuracy |
+|---|---|
+| Raw colour photo | 43.5% |
+| + grayscale | 43.0% |
+| + denoise (only if grainy) + contrast stretch | 65.0% |
+| + deskew (final) | **74.5%** |
+| Final, but handing Tesseract our Otsu black/white image | 70.5% |
+
+**Gate-pass checks** (preprocessed OCR):
+
+| | Count |
+|---|---|
+| Auto-approved | **143 of 200 (71.5%)**; with raw OCR it would be 101 (50.5%) |
+| Pending verification | 57 |
+| Real problems caught | **40 of 40** (36 with the exact reason; 4 couldn't be read, so they were flagged as "unreadable field") |
+| False alarms (a correct pass the OCR misread) | 17 (59 with raw OCR) |
+| Real problems wrongly approved | **0** |
+
+Why passes were pending (a pass can have more than one reason): arrived
+outside slot 18, pallet count mismatch 17, unreadable field 15,
+supplier mismatch 6, unknown truck 4.
+
+### What the OCR results mean
+
+1. **Preprocessing matters most on bad photos.** Hard images go from 43.5%
+   to 74.5% field accuracy. By damage type: grainy 24 -> 58%, blurred
+   43 -> 83%, tilted 46 -> 76%, faded 35 -> 56%. Faded + grainy together
+   is still the weakest case.
+2. **It even helps clean images** (94.2 -> 99.2%). The raw photo has blue
+   ink on cream paper, and Tesseract's own black/white conversion sometimes
+   lost the pallet number ("Pallets: Bul" instead of 31). Grayscale plus a
+   contrast stretch fixes that.
+3. **More cleaning isn't always better.** A 5x5 median filter on every
+   image erased the thin '-' and ':' in clean dates, so arrival time
+   accuracy on clean images fell to 0%. That's why the filter now runs only
+   when a quick grain measurement says the image is noisy.
+4. **We threshold, but we don't hand Tesseract the thresholded image.** Otsu
+   black/white is what we measure the tilt on, but feeding it to Tesseract
+   scored 4 points worse than the cleaned grayscale page: one global cut-off
+   breaks up blurred strokes, and Tesseract's own local thresholding does better.
+5. **Validation is the safety net, not accuracy.** OCR gets 7% of fields
+   wrong, yet no wrong pass was approved: a misread almost never turns into
+   *another truck's exact booking* on all four fields. A misread costs a
+   manual check (17 false alarms), never a wrong approval.
+6. **The leftover clean-image errors are a known Tesseract habit.** Its
+   language model sometimes turns codes into words ("V016" -> "vole").
+   The next fix is to crop each field and read it alone with a digits-only
+   character list.
+
+**Honesty check.** I tuned the preprocessing while looking at these same
+200 images, so I also ran it on a fresh set of 200 (different seed, never
+looked at): clean 99.2% (raw 96.2%), hard 69.5% (raw 44.5%). The hard-image
+number drops 5 points, so treat ~70% as the realistic figure.
+
+### OCR assumptions and limits
+
+- The passes are drawn by the program, so every pass has the same layout
+  and font. Real passes come from many suppliers in many layouts, often
+  handwritten; Tesseract is weak on handwriting.
+- The damage is simulated. A real phone photo also has shadows, perspective
+  (the page isn't flat) and parts cut off.
+- "Approved" needs all four fields to match. A real yard might also check
+  the vehicle registration plate and seal number.
+
 ## Assumptions and limits (be ready to say these yourself)
 
 - The data is simulated, not from a real DC. The arrival pattern, unload
@@ -205,6 +313,23 @@ for suppliers or transporters to book slots.
 Calibrate with real data, add docks that only handle certain truck types,
 model breakdowns, and test what happens when more suppliers ignore their slots.
 
+**(OCR) Why generate fake gate passes instead of using real ones?**
+To score OCR you need to know the right answer for every field. With
+synthetic passes I know exactly what is printed, so I can measure accuracy
+field by field and also check whether the validation rules catch the
+problems I planted.
+
+**(OCR) Why not just trust the OCR when it's 93% accurate?**
+93% per field means only 88.5% of passes are fully right, so about 1 pass in
+9 would go into the system with a mistake. Checking against the booking
+turns that into "approve the matches, look at the rest": 71.5% go straight
+through and no wrong pass was approved.
+
+**(OCR) What would you change for a real yard?**
+Read each field from its own cropped box with a digits-only character
+list, try a deep-learning OCR (PaddleOCR or a cloud API) for handwritten
+passes, and log every manual correction so the rules can be tuned.
+
 ## Words you might be asked about
 
 - **Discrete-event simulation**: a model that jumps from event to event (arrival, start, finish) instead of ticking through every second
@@ -212,6 +337,10 @@ model breakdowns, and test what happens when more suppliers ignore their slots.
 - **Non-preemptive**: once a truck starts unloading, nobody can kick it off the dock, even a chilled truck
 - **Detention**: a charge for keeping a truck waiting past its free time
 - **ASN (Advance Shipping Notice)**: the supplier's message saying what's on the truck and when it's coming
+- **OCR (Optical Character Recognition)**: software that turns a picture of text into text; we use Tesseract through `pytesseract`
+- **Otsu thresholding**: picks the grey level that best separates dark ink from light paper, by trying every cut-off and keeping the one where the two groups are most different
+- **Deskew**: measure how tilted a page is and rotate it straight
+- **Field-level accuracy**: for each field, the share of documents where it's exactly right (stricter than character accuracy: one wrong digit = wrong field)
 - **Window function**: a SQL function that looks at other rows in a group without collapsing them, e.g. `ROW_NUMBER() OVER (PARTITION BY policy ORDER BY wait)`
 
 ## Putting it on GitHub

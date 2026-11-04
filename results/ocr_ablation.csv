@@ -1,0 +1,6 @@
+pipeline,truck_id,vendor_id,arrival_time,pallets,field_avg
+1. raw colour image,44.0,40.0,42.0,48.0,43.5
+2. + grayscale,44.0,40.0,40.0,48.0,43.0
+3. + denoise (if grainy) + contrast stretch,60.0,66.0,60.0,74.0,65.0
+4. + deskew  (final pipeline),74.0,72.0,78.0,74.0,74.5
+"5. final, but sent as Otsu black/white",62.0,74.0,72.0,74.0,70.5

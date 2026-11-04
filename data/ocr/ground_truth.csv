@@ -1,0 +1,201 @@
+pass_id,truck_id,vendor_id,arrival_time,pallets,category,planted_issue,difficulty,damage
+GP0001,T01426,V026,2026-10-21 13:10,20,dry,none,clean,
+GP0002,T00111,V025,2026-10-02 14:23,14,perishable,none,clean,
+GP0003,T01470,V010,2026-10-22 09:22,11,perishable,none,clean,
+GP0004,T00198,V012,2026-10-04 07:18,9,perishable,pallet_count,hard,blur r=1.8; rotated -8.4 deg
+GP0005,T01199,V035,2026-10-18 07:56,18,dry,pallet_count,clean,
+GP0006,T00604,V006,2026-10-09 14:02,16,perishable,pallet_count,hard,blur r=1.6; rotated -6.9 deg
+GP0007,T00976,V014,2026-10-14 18:18,48,bulky,none,clean,
+GP0008,T00492,V028,2026-10-08 09:19,15,dry,pallet_count,hard,contrast x0.29; noise sd=37; rotated +6.9 deg
+GP0009,T00645,V006,2026-10-10 08:46,1,perishable,pallet_count,clean,
+GP0010,T00931,V015,2026-10-14 11:06,8,perishable,none,clean,
+GP0011,T00357,V019,2026-10-06 12:05,45,bulky,pallet_count,clean,
+GP0012,T00425,V007,2026-10-07 11:12,30,bulky,none,clean,
+GP0013,T00329,V039,2026-10-06 07:19,23,bulky,none,clean,
+GP0014,T01337,V038,2026-10-20 09:40,18,dry,none,clean,
+GP0015,T00889,V006,2026-10-13 15:02,16,dry,none,clean,
+GP0016,T01982,V034,2026-10-29 17:50,22,dry,none,hard,blur r=1.7; noise sd=33
+GP0017,T01708,V007,2026-10-25 19:07,14,perishable,none,clean,
+GP0018,T01075,V023,2026-10-16 10:30,16,dry,none,clean,
+GP0019,T04090,V029,2026-10-12 16:12,28,bulky,unknown_truck,clean,
+GP0020,T01544,V014,2026-10-23 12:12,22,bulky,none,clean,
+GP0021,T01545,V011,2026-10-23 12:42,14,perishable,none,clean,
+GP0022,T01372,V026,2026-10-20 14:34,17,dry,none,hard,contrast x0.29; blur r=1.9; noise sd=39
+GP0023,T01953,V040,2026-10-29 11:15,11,dry,none,clean,
+GP0024,T00574,V001,2026-10-09 10:02,24,dry,none,clean,
+GP0025,T00594,V019,2026-10-09 13:20,31,bulky,none,clean,
+GP0026,T01057,V013,2026-10-16 07:36,18,dry,none,clean,
+GP0027,T01789,V028,2026-10-27 09:10,20,dry,none,hard,noise sd=31; rotated +5.2 deg
+GP0028,T01712,V016,2026-10-26 07:00,26,dry,none,clean,
+GP0029,T00679,V030,2026-10-10 15:59,9,perishable,none,clean,
+GP0030,T00556,V021,2026-10-09 07:26,11,dry,pallet_count,clean,
+GP0031,T01108,V026,2026-10-16 14:57,13,perishable,none,clean,
+GP0032,T01429,V029,2026-10-21 13:37,17,dry,none,clean,
+GP0033,T01783,V005,2026-10-27 08:15,8,perishable,none,hard,noise sd=28; rotated -9.3 deg
+GP0034,T00917,V015,2026-10-14 08:19,23,dry,none,hard,contrast x0.29; rotated +4.5 deg
+GP0035,T01176,V023,2026-10-17 15:42,25,dry,none,clean,
+GP0036,T01837,V032,2026-10-27 19:53,19,dry,none,hard,blur r=1.8; noise sd=28; rotated +10.0 deg
+GP0037,T01948,V026,2026-10-29 12:51,32,bulky,none,clean,
+GP0038,T00927,V024,2026-10-14 10:50,18,dry,none,hard,contrast x0.30; blur r=1.6; rotated +6.9 deg
+GP0039,T01442,V012,2026-10-21 18:05,25,dry,none,hard,contrast x0.33; blur r=2.0; rotated -9.9 deg
+GP0040,T00204,V031,2026-10-04 08:19,19,dry,none,hard,noise sd=29; rotated -4.9 deg
+GP0041,T00786,V038,2026-10-12 10:05,23,dry,pallet_count,hard,contrast x0.29; noise sd=39
+GP0042,T00171,V030,2026-10-03 13:50,12,dry,none,clean,
+GP0043,T00527,V019,2026-10-08 14:58,6,perishable,none,clean,
+GP0044,T01276,V040,2026-10-19 10:43,17,perishable,none,hard,contrast x0.26; blur r=1.6; rotated -4.9 deg
+GP0045,T00890,V023,2026-10-13 15:06,41,bulky,none,clean,
+GP0046,T01965,V015,2026-10-29 14:17,34,bulky,none,clean,
+GP0047,T01627,V026,2026-10-24 14:41,33,dry,none,clean,
+GP0048,T00790,V036,2026-10-12 11:18,31,dry,none,clean,
+GP0049,T01981,V011,2026-10-29 17:41,26,dry,none,clean,
+GP0050,T00139,V010,2026-10-03 09:01,15,perishable,none,hard,blur r=1.4; rotated -3.5 deg
+GP0051,T00186,V007,2026-10-03 17:32,12,dry,none,clean,
+GP0052,T08474,V030,2026-10-14 12:52,17,dry,unknown_truck,clean,
+GP0053,T01917,V034,2026-10-29 07:43,8,perishable,pallet_count,clean,
+GP0054,T01415,V039,2026-10-21 11:00,26,dry,none,clean,
+GP0055,T00949,V006,2026-10-14 13:55,5,perishable,none,hard,noise sd=30; rotated +9.5 deg
+GP0056,T01868,V029,2026-10-28 09:05,26,dry,none,clean,
+GP0057,T00236,V038,2026-10-04 13:40,23,dry,none,clean,
+GP0058,T01668,V020,2026-10-25 09:57,15,dry,none,clean,
+GP0059,T00717,V015,2026-10-11 09:59,24,dry,none,clean,
+GP0060,T01893,V039,2026-10-28 14:49,21,dry,none,clean,
+GP0061,T00444,V008,2026-10-07 13:57,9,perishable,none,clean,
+GP0062,T01755,V014,2026-10-26 14:00,17,dry,none,hard,contrast x0.39; blur r=1.5; rotated -4.4 deg
+GP0063,T01681,V023,2026-10-25 11:20,12,dry,none,clean,
+GP0064,T00001,V032,2026-10-01 06:23,12,perishable,none,clean,
+GP0065,T01461,V007,2026-10-22 08:25,10,perishable,pallet_count,hard,contrast x0.29; noise sd=28; rotated -10.0 deg
+GP0066,T00375,V017,2026-10-06 14:24,14,dry,none,clean,
+GP0067,T00374,V032,2026-10-06 13:55,14,perishable,none,hard,noise sd=36; rotated -6.6 deg
+GP0068,T00865,V024,2026-10-13 11:49,28,bulky,none,clean,
+GP0069,T00110,V005,2026-10-02 13:19,31,dry,none,clean,
+GP0070,T00987,V011,2026-10-15 07:47,6,perishable,none,clean,
+GP0071,T01431,V039,2026-10-21 14:05,31,bulky,none,clean,
+GP0072,T01302,V038,2026-10-19 14:34,21,perishable,none,clean,
+GP0073,T01602,V020,2026-10-24 10:56,16,dry,none,clean,
+GP0074,T00612,V029,2026-10-09 16:16,10,dry,none,clean,
+GP0075,T00921,V020,2026-10-14 09:31,10,dry,none,hard,noise sd=35; rotated +7.6 deg
+GP0076,T00069,V009,2026-10-02 07:49,44,bulky,none,clean,
+GP0077,T01829,V005,2026-10-27 16:02,29,dry,none,clean,
+GP0078,T01274,V033,2026-10-19 10:06,19,dry,none,clean,
+GP0079,T00034,V034,2026-10-01 11:38,12,perishable,none,clean,
+GP0080,T00385,V017,2026-10-06 16:04,24,dry,none,clean,
+GP0081,T00037,V003,2026-10-01 12:15,16,dry,none,clean,
+GP0082,T01625,V012,2026-10-24 13:58,13,perishable,none,clean,
+GP0083,T01536,V024,2026-10-23 10:26,8,perishable,none,clean,
+GP0084,T01463,V023,2026-10-22 09:09,7,perishable,none,hard,contrast x0.40; noise sd=37; rotated -5.8 deg
+GP0085,T00756,V030,2026-10-11 16:42,9,perishable,none,clean,
+GP0086,T01889,V030,2026-10-28 14:34,33,dry,none,clean,
+GP0087,T01560,V040,2026-10-23 14:56,21,dry,none,clean,
+GP0088,T01246,V012,2026-10-18 16:37,17,dry,none,clean,
+GP0089,T00745,V028,2026-10-11 13:43,14,dry,none,clean,
+GP0090,T02061,V010,2026-10-30 18:39,4,perishable,none,hard,contrast x0.26; noise sd=29; rotated -3.6 deg
+GP0091,T01060,V032,2026-10-16 08:40,9,perishable,none,hard,contrast x0.35; noise sd=28; rotated +3.0 deg
+GP0092,T01225,V019,2026-10-18 11:49,8,dry,none,clean,
+GP0093,T00414,V028,2026-10-07 08:36,29,bulky,none,clean,
+GP0094,T00509,V007,2026-10-08 11:46,18,dry,pallet_count,clean,
+GP0095,T01615,V012,2026-10-24 12:55,23,dry,none,clean,
+GP0096,T00128,V021,2026-10-02 19:07,17,perishable,none,clean,
+GP0097,T00505,V033,2026-10-08 10:54,13,dry,none,clean,
+GP0098,T02060,V027,2026-10-30 18:04,9,perishable,none,clean,
+GP0099,T01575,V019,2026-10-24 06:52,10,perishable,none,clean,
+GP0100,T06432,V037,2026-10-29 08:49,11,dry,unknown_truck,clean,
+GP0101,T01271,V007,2026-10-19 09:27,7,perishable,none,clean,
+GP0102,T01021,V012,2026-10-15 11:53,10,dry,none,clean,
+GP0103,T01737,V004,2026-10-26 10:36,9,perishable,none,clean,
+GP0104,T00979,V005,2026-10-15 06:10,18,perishable,none,clean,
+GP0105,T01909,V005,2026-10-29 06:12,20,dry,none,clean,
+GP0106,T01831,V022,2026-10-27 16:46,11,dry,none,clean,
+GP0107,T00217,V006,2026-10-04 10:10,33,bulky,none,clean,
+GP0108,T00396,V029,2026-10-06 18:59,7,perishable,none,hard,contrast x0.39; blur r=1.5; noise sd=25; rotated -6.3 deg
+GP0109,T02024,V013,2026-10-30 12:16,28,bulky,none,clean,
+GP0110,T02012,V021,2026-10-30 08:58,23,bulky,none,clean,
+GP0111,T01488,V003,2026-10-22 13:01,19,perishable,none,clean,
+GP0112,T00731,V026,2026-10-11 10:38,20,perishable,none,hard,contrast x0.26; blur r=1.4
+GP0113,T00978,V016,2026-10-14 19:54,21,dry,none,clean,
+GP0114,T01622,V007,2026-10-24 13:54,20,dry,none,clean,
+GP0115,T00478,V011,2026-10-08 06:52,27,bulky,none,clean,
+GP0116,T00413,V010,2026-10-07 08:21,11,dry,none,clean,
+GP0117,T01066,V031,2026-10-16 08:12,10,dry,none,clean,
+GP0118,T00541,V029,2026-10-08 16:54,26,dry,none,hard,noise sd=29; rotated -3.6 deg
+GP0119,T00350,V025,2026-10-06 10:34,16,dry,none,clean,
+GP0120,T01658,V014,2026-10-25 08:04,11,perishable,none,hard,blur r=1.6; noise sd=29
+GP0121,T00563,V012,2026-10-09 08:21,13,perishable,pallet_count,clean,
+GP0122,T00636,V018,2026-10-10 08:51,13,perishable,pallet_count,hard,contrast x0.38; rotated -9.4 deg
+GP0123,T00585,V005,2026-10-09 10:31,8,dry,none,clean,
+GP0124,T00582,V030,2026-10-09 11:26,23,dry,none,clean,
+GP0125,T00337,V002,2026-10-06 08:48,24,dry,none,clean,
+GP0126,T00984,V020,2026-10-15 07:07,12,dry,none,clean,
+GP0127,T00260,V031,2026-10-05 07:14,15,dry,pallet_count,clean,
+GP0128,T01964,V033,2026-10-29 13:57,24,bulky,none,clean,
+GP0129,T00611,V038,2026-10-09 16:02,23,dry,none,hard,blur r=1.3; rotated -7.5 deg
+GP0130,T00982,V034,2026-10-15 06:49,13,perishable,none,clean,
+GP0131,T00785,V019,2026-10-12 10:09,18,bulky,none,clean,
+GP0132,T00504,V019,2026-10-08 11:25,13,perishable,none,clean,
+GP0133,T01280,V010,2026-10-19 10:35,8,perishable,none,hard,blur r=1.7; noise sd=34
+GP0134,T01294,V007,2026-10-19 12:45,19,dry,none,clean,
+GP0135,T00059,V033,2026-10-01 17:17,11,perishable,none,hard,blur r=1.9; noise sd=36; rotated -7.6 deg
+GP0136,T00327,V008,2026-10-06 06:19,10,dry,none,clean,
+GP0137,T01452,V028,2026-10-22 07:09,12,perishable,none,hard,blur r=1.9; noise sd=29
+GP0138,T01756,V030,2026-10-26 14:24,15,dry,pallet_count,clean,
+GP0139,T00805,V002,2026-10-12 13:38,33,bulky,none,clean,
+GP0140,T00606,V023,2026-10-09 15:18,14,perishable,none,hard,contrast x0.32; blur r=1.4
+GP0141,T01507,V037,2026-10-23 06:08,17,dry,none,hard,contrast x0.26; noise sd=29; rotated +7.3 deg
+GP0142,T01109,V022,2026-10-16 15:41,18,perishable,none,clean,
+GP0143,T01390,V040,2026-10-21 06:57,13,dry,none,clean,
+GP0144,T00287,V021,2026-10-05 09:30,22,perishable,none,clean,
+GP0145,T01549,V024,2026-10-23 13:20,14,dry,none,clean,
+GP0146,T01469,V010,2026-10-22 09:57,32,bulky,none,clean,
+GP0147,T01296,V020,2026-10-19 13:05,19,bulky,none,clean,
+GP0148,T00009,V017,2026-10-01 07:33,20,dry,none,clean,
+GP0149,T00740,V029,2026-10-11 13:45,24,dry,none,clean,
+GP0150,T00201,V030,2026-10-04 07:41,12,perishable,none,hard,blur r=1.3; rotated +9.8 deg
+GP0151,T00735,V030,2026-10-11 13:31,13,perishable,none,hard,contrast x0.36; blur r=1.6; rotated -10.0 deg
+GP0152,T01189,V011,2026-10-18 06:34,11,dry,pallet_count,hard,contrast x0.39; rotated +3.5 deg
+GP0153,T01264,V018,2026-10-19 08:10,33,bulky,none,hard,contrast x0.39; blur r=1.4; rotated -4.0 deg
+GP0154,T00142,V030,2026-10-03 09:15,16,dry,none,clean,
+GP0155,T01678,V029,2026-10-25 11:43,14,perishable,none,clean,
+GP0156,T00023,V001,2026-10-01 09:35,16,dry,none,clean,
+GP0157,T01689,V028,2026-10-25 13:20,12,perishable,none,hard,contrast x0.38; blur r=1.5; rotated +5.8 deg
+GP0158,T00208,V026,2026-10-04 08:49,23,dry,none,clean,
+GP0159,T01082,V032,2026-10-16 11:16,19,bulky,none,clean,
+GP0160,T01473,V036,2026-10-22 10:44,21,bulky,none,hard,blur r=1.8; rotated +5.1 deg
+GP0161,T01532,V003,2026-10-23 10:41,16,perishable,none,hard,blur r=1.4; noise sd=30; rotated +8.9 deg
+GP0162,T00462,V028,2026-10-07 14:26,17,dry,none,clean,
+GP0163,T00881,V018,2026-10-13 13:32,18,perishable,none,clean,
+GP0164,T01376,V031,2026-10-20 15:44,13,dry,none,clean,
+GP0165,T01496,V003,2026-10-22 14:29,24,dry,none,clean,
+GP0166,T00589,V021,2026-10-09 12:28,27,dry,none,clean,
+GP0167,T00365,V037,2026-10-06 12:31,32,bulky,none,hard,contrast x0.36; blur r=1.3; rotated +10.0 deg
+GP0168,T01158,V008,2026-10-17 10:25,10,perishable,none,hard,contrast x0.38; blur r=1.3
+GP0169,T00686,V023,2026-10-10 17:08,16,dry,none,hard,blur r=1.6; noise sd=30; rotated +8.5 deg
+GP0170,T03228,V007,2026-10-29 09:05,20,dry,unknown_truck,clean,
+GP0171,T00453,V040,2026-10-07 15:13,9,dry,none,clean,
+GP0172,T01709,V016,2026-10-26 06:07,14,perishable,none,hard,contrast x0.39; blur r=1.7; rotated -3.3 deg
+GP0173,T01619,V034,2026-10-24 13:02,24,dry,none,clean,
+GP0174,T01034,V036,2026-10-15 15:11,12,dry,none,clean,
+GP0175,T00702,V001,2026-10-11 08:20,12,perishable,none,clean,
+GP0176,T01385,V039,2026-10-20 19:24,25,bulky,none,clean,
+GP0177,T01171,V008,2026-10-17 13:51,4,perishable,none,clean,
+GP0178,T00840,V035,2026-10-13 07:31,46,bulky,none,hard,contrast x0.35; noise sd=26; rotated -4.2 deg
+GP0179,T01890,V019,2026-10-28 14:04,22,dry,none,clean,
+GP0180,T01124,V025,2026-10-16 19:14,24,bulky,pallet_count,clean,
+GP0181,T01479,V010,2026-10-22 11:35,29,bulky,none,hard,contrast x0.36; blur r=1.6; noise sd=29; rotated +3.8 deg
+GP0182,T01856,V039,2026-10-28 08:35,23,bulky,none,clean,
+GP0183,T00438,V039,2026-10-07 12:59,7,perishable,none,hard,noise sd=33; rotated +6.9 deg
+GP0184,T01357,V017,2026-10-20 13:05,33,bulky,none,clean,
+GP0185,T01796,V023,2026-10-27 10:32,14,perishable,none,clean,
+GP0186,T00833,V011,2026-10-12 17:56,18,dry,none,hard,contrast x0.28; blur r=1.5; noise sd=26; rotated +4.8 deg
+GP0187,T00936,V021,2026-10-14 11:52,14,dry,none,clean,
+GP0188,T01800,V039,2026-10-27 10:36,17,perishable,none,clean,
+GP0189,T00053,V019,2026-10-01 15:38,19,dry,none,clean,
+GP0190,T00036,V024,2026-10-01 11:55,16,perishable,pallet_count,clean,
+GP0191,T00950,V038,2026-10-14 14:14,21,dry,none,clean,
+GP0192,T01313,V005,2026-10-19 18:39,18,dry,none,clean,
+GP0193,T01181,V011,2026-10-17 15:43,35,bulky,none,clean,
+GP0194,T01874,V002,2026-10-28 11:54,13,perishable,none,clean,
+GP0195,T01928,V039,2026-10-29 09:42,22,dry,none,hard,contrast x0.38; rotated -5.6 deg
+GP0196,T01690,V005,2026-10-25 13:13,8,perishable,none,clean,
+GP0197,T01591,V002,2026-10-24 08:48,30,dry,none,clean,
+GP0198,T00830,V012,2026-10-12 17:36,24,dry,pallet_count,clean,
+GP0199,T01164,V030,2026-10-17 12:46,19,dry,none,clean,
+GP0200,T02033,V009,2026-10-30 13:49,9,perishable,none,clean,
